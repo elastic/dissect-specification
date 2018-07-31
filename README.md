@@ -23,7 +23,7 @@ In this example, search the string for ` ` (space), the first delimiter. Found a
     2. A dissect pattern may have leading and trailing and delimiters
     3. A dissect pattern may have multiple delimiters of different characters of different lengths. 
     4. A dissect patten must contain unique key names unless the modifier allows or requires duplicated key names.
-    5. A dissect pattern may not use `%` as a delimiters
+    5. A dissect pattern may not use `%` as delimiters
 2. Key specification
     1. A dissect key must start with `%{` and end with `}`
     2. A dissect key may have a name, e.g. `%{key_name}` and it must be able to be encoded as UTF-8.
