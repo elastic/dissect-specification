@@ -34,7 +34,7 @@ In this example, search the string for ` ` (space), the first delimiter. Found a
     1. A dissect modifier must be defined inside the dissect key, to the left or right the key name.
     2. Multiple dissect modifiers per key may be allowed.
     3. `->`: Right padding ignore - instructs the parser to ignore repeating consecutive repeating delimiters to the right of the key.  This key must be placed to the right of the key name and is allowed to co-exist with any other modifiers and must always be the furthest right modifier. _see example below_
-    4. `+` Append -  instructs the parser to append this key's value to the value to the prior key (left to right) with the same name. This key must be placed to the left of the key name. _see example below_
+    4. `+` Append -  instructs the parser to append this key's value to the value to the prior key (left to right) with the same name. A user defined append separator must be supported. This key must be placed to the left of the key name. _see example below_
     5. `+` and `/n` Append with order - instructs the parser to append this key's to the value of the prior key with the same name based on order. The `+` must be placed on the left of the key name and `/n` placed to the right of the key name, where n = order.  The order must start at `1`. _see example below_
     6. `?` - Named skip key  instructs the parser to not include this result in the final result set. Behaves identical to an empty skip key `%{}` but may be used to help with human readability. This key must be placed to the left of the key name. _see example below_ 
     7. `*` and `&` reference modifiers. This modifier requires two keys with the same name present in the dissect pattern. One key with the `*` and another with the `&`. This instructs the parser that the value discovered by the `*` is to be used as the key name for the value discovered by the corresponding `&` key. These modifiers must be placed on the left of the key name. _see example below_
@@ -54,7 +54,7 @@ In this example, search the string for ` ` (space), the first delimiter. Found a
 
 ### Right padding modifier `->`
 * pattern: ``` %{a->} %{b} %{c}```
-* string: ```foo         bar baz```
+* string: <code>foo &nbsp; &nbsp; &nbsp; &nbsp; bar baz</code>
 * result: ```a=foo, b=bar, c=baz```
 
 In the above example, the delimiter is ` ` (space), the `->` instructs the parser to skip all of the consecutive repeating` ` to the right of  `a`
@@ -84,7 +84,7 @@ Empty skip key with right padding must be supported.
 
 In the above example the, the values are append in left to right order to the result. 
 
-A user specified append string must be supported. Assume the user define the separator to be `, ` (comma space)
+A user specified append separator must be supported. Assume the user define the separator to be `, ` (comma space)
 
 * pattern: ```%{a} %{+a} %{+a}```
 * string: ```foo bar baz```
