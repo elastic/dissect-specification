@@ -33,10 +33,10 @@ In this example, search the string for ` ` (space), the first delimiter. Found a
 3. Modifier specification
     1. A dissect modifier must be defined inside the dissect key, to the left or right the key name.
     2. Multiple dissect modifiers per key may be allowed.
-    3. `->`: Right padding ignore - instructs the parser to ignore repeating consecutive repeating delimiters to the right of the key.  This key must be placed to the right of the key name and is allowed to co-exist with any other modifiers and must always be the furthest right modifier. _see example below_
-    4. `+` Append -  instructs the parser to append this key's value to the value to the prior key (left to right) with the same name. A user defined append separator must be supported. This key must be placed to the left of the key name. _see example below_
-    5. `+` and `/n` Append with order - instructs the parser to append this key's to the value of the prior key with the same name based on order. The `+` must be placed on the left of the key name and `/n` placed to the right of the key name, where n = order.  The order must start at `1`. _see example below_
-    6. `?` - Named skip key  instructs the parser to not include this result in the final result set. Behaves identical to an empty skip key `%{}` but may be used to help with human readability. This key must be placed to the left of the key name. _see example below_ 
+    3. `->`: Right padding ignore - instructs the parser to ignore repeating consecutive repeating delimiters to the right of the key.  The `->` modifier must be placed to the right of the key name and is allowed to co-exist with any other modifiers and must always be the furthest right modifier. _see example below_
+    4. `+` Append -  instructs the parser to append this key's value to the value to the prior key (left to right) with the same name. A user defined append separator must be supported. The user defined separator is a character, or set of characters that will be placed between the appended values. The `+` modifier must be placed to the left of the key name. _see example below_
+    5. `+` and `/n` Append with order - instructs the parser to append this key's to the value of the prior key with the same name based on order. The `+` modifier must be placed on the left of the key name and `/n` modifier placed to the right of the key name, where n = order.  The order must start at `1`. _see example below_
+    6. `?` - Named skip key instructs the parser to not include this result in the final result set. Behaves identical to an empty skip key `%{}` but may be used to help with human readability. The `?` modifier must be placed to the left of the key name. _see example below_ 
     7. `*` and `&` reference modifiers. This modifier requires two keys with the same name present in the dissect pattern. One key with the `*` and another with the `&`. This instructs the parser that the value discovered by the `*` is to be used as the key name for the value discovered by the corresponding `&` key. These modifiers must be placed on the left of the key name. _see example below_
 4. Parser specification 
     1. A dissect parser must not allow partial matches. All delimiters must be present in string, and all keys must have a corresponding value.
@@ -46,7 +46,7 @@ In this example, search the string for ` ` (space), the first delimiter. Found a
     5. A dissect parser must allow the last key of a pattern to match the remainder of the string without additional modifiers.  _see example below_
     6. A dissect parser must treat consecutive repeating delimiters as valid empty matches unless instructed otherwise by modifiers. _see example below_
     7. A dissect parser must allow a user specified string to use as the value between append operations. _see example below_
-    8. A dissect parser must support multiple charachter delimiters. 
+    8. A dissect parser must support multiple character delimiters. 
     9. A dissect parser result set must be string/string key value pairs. 
     10. A dissect parser must support all modifiers defined by they specification. 
 
